@@ -5,5 +5,9 @@
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
 }

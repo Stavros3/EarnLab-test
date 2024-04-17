@@ -1,4 +1,4 @@
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { DataSourceOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 import { settings } from './settings.config';
@@ -18,10 +18,3 @@ export const connectionOptions: DataSourceOptions = {
   ssl: settings.db.ssl,
   extra: settings.db.extra,
 };
-
-export const datasource = new DataSource({
-  ...connectionOptions,
-  migrationsTableName: 'migration',
-  migrations: ['migrations/*.ts', 'migrations/*.js', 'dist/migrations/*.js'],
-  logging: true,
-});
