@@ -10,6 +10,14 @@ export class BlogspotController {
     @Query('skip') skip: number = 0,
     @Query('limit') limit: number = 10,
   ) {
+    if (limit > 100) {
+      limit = 100;
+    }
+
+    if (skip < 0) {
+      skip = 0;
+    }
+
     return this.blogspotService.findAll(skip, limit);
   }
 
