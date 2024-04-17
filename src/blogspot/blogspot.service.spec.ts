@@ -1,5 +1,3 @@
-// FILEPATH: /c:/Users/gordo/Desktop/Projects/earnlab/test/src/blogspot/blogspot.service.spec.ts
-
 import { Test, TestingModule } from '@nestjs/testing';
 import { BlogspotService } from './blogspot.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
