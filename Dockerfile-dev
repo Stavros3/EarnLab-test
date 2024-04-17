@@ -1,0 +1,19 @@
+###################
+# BUILD FOR LOCAL DEVELOPMENT
+###################
+
+FROM node:18-alpine As development
+USER node
+WORKDIR /app
+
+COPY --chown=node:node package*.json ./
+
+ENV NODE_ENV development
+
+RUN npm ci
+
+COPY --chown=node:node . .
+
+EXPOSE 3000 5432
+USER node
+CMD [ "npm", "run", "start:dev" ]

@@ -1,0 +1,18 @@
+{
+  "db": {
+    "host": "earnlab_postgresql",
+    "port": 5432,
+    "database": "earnlab",
+    "username": "earnlab",
+    "password": "earnlab",
+    "logger": [
+      "error",
+      "warn",
+      "log"
+    ],
+    "ssl": false,
+    "synchronize": true,
+    "extra": {}
+  },
+  "swagger": true
+}
