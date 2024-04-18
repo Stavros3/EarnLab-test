@@ -15,10 +15,27 @@ export class BlogspotService {
   ) {}
 
   async findAll(skip: number, limit = 20): Promise<BPost[]> {
-    return this.bPostRepository.find({
+    //check if posts are in cache
+    const cacheKey = `posts_${skip}_${limit}`;
+    const cachedPosts = await this.cacheService.get(cacheKey);
+
+    if (cachedPosts) {
+      return cachedPosts as BPost[];
+    }
+
+    const bposts = await this.bPostRepository.find({
       skip,
       take: limit,
     });
+
+    //save posts to cache
+    if (!bposts || bposts.length === 0) {
+      throw new NotFoundException('Posts not found');
+    }
+
+    await this.cacheService.set(cacheKey, bposts, 300);
+
+    return bposts;
   }
 
   async findOne(id: string): Promise<BPost> {
@@ -34,7 +51,7 @@ export class BlogspotService {
 
     if (bpost) {
       // save data to cache:
-      await this.cacheService.set(cacheKey, bpost);
+      await this.cacheService.set(cacheKey, bpost, 300);
       return bpost;
     } else {
       throw new NotFoundException(`Post with id ${id} not found`);
