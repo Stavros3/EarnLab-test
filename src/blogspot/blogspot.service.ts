@@ -33,7 +33,7 @@ export class BlogspotService {
       throw new NotFoundException('Posts not found');
     }
 
-    await this.cacheService.set(cacheKey, bposts, 300);
+    await this.cacheService.set(cacheKey, bposts, 300000);
 
     return bposts;
   }
@@ -51,7 +51,7 @@ export class BlogspotService {
 
     if (bpost) {
       // save data to cache:
-      await this.cacheService.set(cacheKey, bpost, 300);
+      await this.cacheService.set(cacheKey, bpost, 300000);
       return bpost;
     } else {
       throw new NotFoundException(`Post with id ${id} not found`);

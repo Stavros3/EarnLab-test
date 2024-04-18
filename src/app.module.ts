@@ -11,7 +11,7 @@ import * as redisStore from 'cache-manager-redis-store';
   imports: [
     BlogspotModule,
     CacheModule.register({
-      ttl: 300,
+      ttl: 300000,
       isGlobal: true,
       store: redisStore,
       host: 'earnlab_redis',
